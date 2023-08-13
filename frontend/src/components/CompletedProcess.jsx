@@ -3,7 +3,7 @@ import { Chip } from "@nextui-org/react";
 import ViewMilk from "./ViewMilk";
 import TimeAgo from "javascript-time-ago";
 
-const timeAgo = new TimeAgo("es-ES");
+const timeAgo = new TimeAgo();
 
 function Process({ receivedProcess }) {
   const liters = JSON.parse(receivedProcess.milk).reduce(
