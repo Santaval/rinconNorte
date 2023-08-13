@@ -4,7 +4,7 @@ import axios from "axios";
 import API from "../lib/API";
 import { Button, Input } from "@nextui-org/react";
 import Process from "../components/Process";
-import { Link, Navigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 function Panel() {
   const [process, setProcess] = useState([]);

@@ -11,9 +11,10 @@ CREATE TABLE cheeseProduction (
     date DATETIME DEFAULT NOW(),
     milk JSON
     kg INT,
-    reposeStart DATE,
-    rennetStart DATE,
+    reposeStart DATETIME,
+    rennetStart DATETIME,
 );
+
 
 
 

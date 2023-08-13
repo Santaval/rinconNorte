@@ -5,7 +5,6 @@ const router = require("express").Router();
 router.get("/cheese", async (req, res) => {
   try {
     const items = await pool.query("SELECT * FROM cheeseProduction");
-    console.log(items);
     if (req.query.activeOnly) {
       const activeItems = items.filter((item) => item.kg === null);
       res.json(activeItems).end();
