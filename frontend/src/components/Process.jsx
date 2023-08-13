@@ -85,12 +85,12 @@ function Process({ receivedProcess, refresh }) {
 
           <div>
             <h6 className="text-gray-500">Calcio</h6>
-            <span>{liters * 0.25} Oz</span>
+            <span>{liters * 0.25} ml</span>
           </div>
 
           <div>
             <h6 className="text-gray-500">Cuajo</h6>
-            <span>{(((liters * 0.016) / 98) * 1000).toFixed(4)} Oz</span>
+            <span>{(((liters * 0.016) / 98) * 1000).toFixed(4)} ml</span>
           </div>
         </div>
         {!process.reposeStart && (
