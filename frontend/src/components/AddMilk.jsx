@@ -14,7 +14,7 @@ import API from "../lib/API";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
 
-export default function AddMilk({ milkArray, id }) {
+export default function AddMilk({ milkArray, id}) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [milk, setMilk] = useState(null);
   const [provider, setProvider] = useState(null);
@@ -104,18 +104,15 @@ export default function AddMilk({ milkArray, id }) {
                   {milkArr.length !== 0 && (
                     <span>
                       Total:{" "}
-                      {milkArr.reduce((acc, milk) => acc + milk.liters, 0)} {" "}
+                      {milkArr.reduce((acc, milk) =>parseInt( acc) + parseInt(milk.liters), 0)} {" "}
                       Litros
                     </span>
                   )}
                 </div>
               </ModalBody>
               <ModalFooter>
-                <Button color="danger" variant="light" onClick={onClose}>
-                  Close
-                </Button>
-                <Button color="primary" onPress={onClose}>
-                  Action
+                <Button color="success"  variant="flat" onClick={() => window.location.reload()}>
+                  Ok
                 </Button>
               </ModalFooter>
             </>

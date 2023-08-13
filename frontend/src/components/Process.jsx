@@ -5,7 +5,7 @@ import timer from "../lib/timer";
 import axios from "axios";
 import API from "../lib/API";
 
-function Process({ receivedProcess }) {
+function Process({ receivedProcess, refresh }) {
   const [reposeEnd, setReposeEnd] = useState(null);
   const [rennetEnd, setRennetEnd] = useState(null);
   const [process, setProcess] = useState(receivedProcess);
@@ -53,7 +53,7 @@ function Process({ receivedProcess }) {
   useEffect(() => {
     if (process.reposeStart) {
       setInterval(() => {
-        setReposeEnd(timer(process.reposeStart, 1));
+        setReposeEnd(timer(process.reposeStart, .5));
       }, 1000);
     }
   }, [process]);
@@ -95,7 +95,7 @@ function Process({ receivedProcess }) {
         </div>
         {!process.reposeStart && (
           <div className="flex  gap-2">
-            <AddMilk milkArray={JSON.parse(process.milk)} id={process.id} />
+            <AddMilk  milkArray={JSON.parse(process.milk)} id={process.id} />
             {process.milk && JSON.parse(process.milk).length > 0 && (
               <Button
                 onPress={() => handdleReposeStart()}
@@ -107,7 +107,7 @@ function Process({ receivedProcess }) {
             )}
           </div>
         )}
-        {reposeEnd && reposeEnd.minutes > 0 && (
+        {reposeEnd && reposeEnd.seconds > 0 && (
           <div>
             <h6 className="text-gray-500">Reposo</h6>
             <span>
@@ -125,7 +125,7 @@ function Process({ receivedProcess }) {
           </Button>
         )}
 
-        {rennetEnd && rennetEnd.minutes > 0 && (
+        {rennetEnd && rennetEnd.seconds > 0 && (
           <div>
             <h6 className="text-gray-500">Cuajo</h6>
             <span>
@@ -134,7 +134,7 @@ function Process({ receivedProcess }) {
           </div>
         )}
 
-        {rennetEnd && rennetEnd.minutes < 0 && (
+        {rennetEnd && rennetEnd.seconds < 0 && (
           <div className="flex mt-4 gap-4">
             <Input
               onInput={(evt) => setKg(evt.target.value)}

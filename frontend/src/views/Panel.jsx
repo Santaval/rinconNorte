@@ -57,7 +57,8 @@ function Panel() {
         </header>
 
         <section className="p-3 mt-12 flex flex-col gap-12">
-          {process.map((process) => <Process receivedProcess={process} />)}
+          {process.map((process) => <Process 
+          receivedProcess={process} />)}
         </section>
       </main>
     </>
