@@ -10,7 +10,7 @@ require('dotenv').config()
 
 app.use(express.json())
 app.use(cors({
-    origin:[ 'http://localhost:3000', 'https://rinconNorte.savaldev.com'],
+    origin:[ 'http://localhost:3000', 'https://rinconnorte.savaldev.com'],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
 }))
 
