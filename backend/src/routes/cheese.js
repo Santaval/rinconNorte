@@ -40,6 +40,8 @@ router.post("/cheese", async (req, res) => {
     req.body.milk = JSON.stringify(req.body.milk);
   }
 
+  req.body.date = new Date();
+
   try {
     await pool.query("INSERT INTO cheeseProduction SET ?", [req.body]);
     res.send("Item added").end();
