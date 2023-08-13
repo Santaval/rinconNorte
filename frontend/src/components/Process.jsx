@@ -143,7 +143,7 @@ function Process({ receivedProcess, refresh }) {
             />
            {kg && kg > 0 && <Button onClick={handdleFinish} color="primary" variant="flat">
               {" "}
-              Finalizar proceso
+              Finalizar
             </Button>}
           </div>
         )}

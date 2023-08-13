@@ -6,7 +6,7 @@ export default function App() {
 
   const handdleExit = () => {
     localStorage.removeItem('access');
-    window.location.href = '/';
+    window.location.reload();
   }
 
   const menuItems = [
