@@ -9,7 +9,13 @@ router.get("/cheese", async (req, res) => {
       const activeItems = items.filter((item) => item.kg === null);
       res.json(activeItems).end();
       return;
-    } else {
+    }
+    else if (req.query.finishedOnly) {
+      const finishedItems = items.filter((item) => item.kg !== null);
+      res.json(finishedItems).end();
+      return;
+    }
+    else {
       res.json(items).end();
     }
   } catch (err) {
