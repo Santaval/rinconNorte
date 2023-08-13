@@ -2,7 +2,6 @@ import React from "react";
 import { Chip } from "@nextui-org/react";
 import ViewMilk from "./ViewMilk";
 import TimeAgo from "javascript-time-ago";
-TimeAgo.addDefaultLocale(require("javascript-time-ago/locale/es"));
 
 const timeAgo = new TimeAgo("es-ES");
 

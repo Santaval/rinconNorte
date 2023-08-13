@@ -10,7 +10,6 @@ function Resume() {
   useEffect(() => {
     const getProcess = async () => {
         const { data } = await axios.get(`${API}/cheese?completedOnly=true`);
-        console.log(data);
         setProcess(data);
     };
     getProcess();
