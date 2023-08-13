@@ -4,6 +4,7 @@ import axios from "axios";
 import API from "../lib/API";
 import { Button, Input } from "@nextui-org/react";
 import Process from "../components/Process";
+import { Link, Navigate } from "react-router-dom";
 
 function Panel() {
   const [process, setProcess] = useState([]);
@@ -29,6 +30,8 @@ function Panel() {
     getProcess();
   }, [getProcess]);
 
+  if (!localStorage.getItem('access')) return <Navigate to="/" />;
+
   return (
     <>
       <NavBar />
@@ -53,8 +56,8 @@ function Panel() {
           )}
         </header>
 
-        <section>
-          {process.map((process) => <Process process={process} />)}
+        <section className="p-3 mt-12 flex flex-col gap-12">
+          {process.map((process) => <Process receivedProcess={process} />)}
         </section>
       </main>
     </>

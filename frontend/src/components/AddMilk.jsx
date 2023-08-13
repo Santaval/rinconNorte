@@ -50,7 +50,7 @@ export default function AddMilk({ milkArray, id }) {
 
   return (
     <>
-      <Button onPress={onOpen}>Leche</Button>
+      <Button color="secondary" variant="flat" onPress={onOpen}>Leche</Button>
       <Modal isOpen={isOpen} size="sm" onOpenChange={onOpenChange}>
         <ModalContent>
           {(onClose) => (

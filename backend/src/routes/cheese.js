@@ -48,6 +48,14 @@ router.put("/cheese/:id", async (req, res) => {
   if (req.body.milk) {
     req.body.milk = JSON.stringify(req.body.milk);
   }
+
+  if (req.body.reposeStart) {
+    req.body.reposeStart = new Date(req.body.reposeStart);
+  }
+
+  if (req.body.rennetStart) {
+    req.body.rennetStart = new Date(req.body.rennetStart);
+  }
   try {
     const updatedItem = await pool.query(
       "UPDATE cheeseProduction SET ? WHERE id = ?",
@@ -55,6 +63,7 @@ router.put("/cheese/:id", async (req, res) => {
     );
     res.json(updatedItem).end();
   } catch (err) {
+    console.log(err);
     res.status(500).send("Internal server error").end();
   }
 });
