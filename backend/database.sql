@@ -9,9 +9,10 @@ USE rinconNorte;
 CREATE TABLE cheeseProduction (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     date DATETIME DEFAULT NOW(),
+    milk JSON
     kg INT,
     reposeStart DATE,
-    rennetStart DATE
+    rennetStart DATE,
 );
 
 
