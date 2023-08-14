@@ -104,7 +104,7 @@ export default function AddMilk({ milkArray, id}) {
                   {milkArr.length !== 0 && (
                     <span>
                       Total:{" "}
-                      {milkArr.reduce((acc, milk) =>parseInt( acc) + parseInt(milk.liters), 0)} {" "}
+                      {milkArr.reduce((acc, milk) =>parseFloat( acc) + parseFloat(milk.liters), 0)} {" "}
                       Litros
                     </span>
                   )}

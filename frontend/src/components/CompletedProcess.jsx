@@ -6,7 +6,7 @@ moment.locale("es");
 
 function Process({ receivedProcess }) {
   const liters = JSON.parse(receivedProcess.milk).reduce(
-    (acc, milk) => parseInt(acc) + parseInt(milk.liters),
+    (acc, milk) => parseFloat(acc) + parseFloat(milk.liters),
     0
   );
 

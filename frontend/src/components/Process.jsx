@@ -11,9 +11,10 @@ function Process({ receivedProcess, refresh }) {
   const [process, setProcess] = useState(receivedProcess);
   const [kg, setKg] = useState(null);
   const liters = JSON.parse(process.milk).reduce(
-    (acc, milk) => parseInt(acc) + parseInt(milk.liters),
+    (acc, milk) => parseFloat(acc) + parseFloat(milk.liters),
     0
   );
+
 
   const handdleReposeStart = async () => {
     await axios.put(`${API}/cheese/${process.id}`, {
