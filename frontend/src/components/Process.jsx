@@ -56,7 +56,7 @@ function Process({ receivedProcess }) {
   useEffect(() => {
     if (process.reposeStart) {
       setInterval(() => {
-        setReposeEnd(timer(process.reposeStart, .1));
+        setReposeEnd(timer(process.reposeStart, 30));
       }, 1000);
     }
   }, [process]);
@@ -64,7 +64,7 @@ function Process({ receivedProcess }) {
   useEffect(() => {
     if (process.rennetStart) {
       setInterval(() => {
-        setRennetEnd(timer(process.rennetStart, .5));
+        setRennetEnd(timer(process.rennetStart, 45));
       }, 1000);
     }
   }, [process]);
