@@ -4,8 +4,9 @@ import { Button, Chip, Input } from "@nextui-org/react";
 import timer from "../lib/timer";
 import axios from "axios";
 import API from "../lib/API";
+import { Howl } from "howler";
 
-function Process({ receivedProcess, refresh }) {
+function Process({ receivedProcess }) {
   const [reposeEnd, setReposeEnd] = useState(null);
   const [rennetEnd, setRennetEnd] = useState(null);
   const [process, setProcess] = useState(receivedProcess);
@@ -14,6 +15,7 @@ function Process({ receivedProcess, refresh }) {
     (acc, milk) => parseFloat(acc) + parseFloat(milk.liters),
     0
   );
+
 
 
   const handdleReposeStart = async () => {
@@ -54,7 +56,7 @@ function Process({ receivedProcess, refresh }) {
   useEffect(() => {
     if (process.reposeStart) {
       setInterval(() => {
-        setReposeEnd(timer(process.reposeStart, 30));
+        setReposeEnd(timer(process.reposeStart, .1));
       }, 1000);
     }
   }, [process]);
@@ -62,10 +64,13 @@ function Process({ receivedProcess, refresh }) {
   useEffect(() => {
     if (process.rennetStart) {
       setInterval(() => {
-        setRennetEnd(timer(process.rennetStart, 45));
+        setRennetEnd(timer(process.rennetStart, .5));
       }, 1000);
     }
   }, [process]);
+
+
+
 
   return (
     <div>
@@ -76,7 +81,7 @@ function Process({ receivedProcess, refresh }) {
         <div className="flex justify-between p-3 gray-bg">
           <div>
             <h6 className="text-gray-500">Leche</h6>
-            <span>{liters} L</span>
+            <span>{liters.toFixed(4)} L</span>
           </div>
 
           <div>
@@ -86,7 +91,7 @@ function Process({ receivedProcess, refresh }) {
 
           <div>
             <h6 className="text-gray-500">Calcio</h6>
-            <span>{liters * 0.25} ml</span>
+            <span>{(liters * 0.25).toFixed(4)} ml</span>
           </div>
 
           <div>
