@@ -4,7 +4,6 @@ import { Button, Chip, Input } from "@nextui-org/react";
 import timer from "../lib/timer";
 import axios from "axios";
 import API from "../lib/API";
-import { Howl } from "howler";
 
 function Process({ receivedProcess }) {
   const [reposeEnd, setReposeEnd] = useState(null);
