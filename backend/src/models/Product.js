@@ -1,21 +1,21 @@
 class ProductModel {
 
-    static async create({ name, price, materials, processTimes }) {
+    static async create({ name, price, materials, processStages }) {
         const id = codeGenerator(10);
         const result = await pool.query("INSERT INTO product SET ?", {
             id,
             name,
             price,
             materials,
-            processTimes
+            processStages
         });
         if (result.affectedRows === 1) return { id, name, price, stock, category };
         throw new Error("Error al crear producto");
     }
 
-    static async edit({ id, name, price, materials, processTimes }) {
+    static async edit({ id, name, price, materials, processStages }) {
         const result = await pool.query("UPDATE product SET ? WHERE id = ?", [
-            { name, price, materials, processTimes },
+            { name, price, materials, processStages },
             id,
         ]);
         if (result.affectedRows === 1) return { id, name, price, stock, category };
