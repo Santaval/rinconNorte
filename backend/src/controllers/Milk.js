@@ -3,9 +3,9 @@ const MilkModel = require("../models/Milk");
 class MilkController {
   static async create(req, res) {
     try {
-      const { name } = req.body;
+      const { liters, provider } = req.body;
       const milk = await MilkModel.create({
-        name,
+        liters, provider
       });
       res.status(201).json(milk);
     } catch (error) {
@@ -16,10 +16,11 @@ class MilkController {
   static async edit(req, res) {
     try {
       const { id } = req.params;
-      const { name } = req.body;
+      const { liters, provider } = req.body;
       const milk = await MilkModel.edit({
         id,
-        name,
+        liters,
+        provider,
       });
       res.status(200).json(milk);
     } catch (error) {
