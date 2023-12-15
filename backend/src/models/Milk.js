@@ -25,9 +25,15 @@ class Milk {
     if (result.affectedRows === 0) throw new Error("Error al eliminar leche");
   }
 
-  static async getAll() {
-    const result = await pool.query("SELECT * FROM milk");
-    return result;
+  static async getAll({page}) {
+    const total = await pool.query("SELECT COUNT(*) FROM milk");
+    const result = await pool.query("SELECT * FROM milk LIMIT 10 OFFSET ?", [(page - 1) * 10]);
+    return {
+        total: total[0]["COUNT(*)"],
+        result,
+        page: page,
+        pages: Math.ceil(total[0]["COUNT(*)"] / 10),
+    };
   }
 }
 
