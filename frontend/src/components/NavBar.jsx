@@ -10,9 +10,11 @@ export default function App() {
   }
 
   const menuItems = [
-    "Panel",
-    "Resumen",
-    "Salir",
+    { name: "Panel", path: "/" },
+    { name: "Resumen", path: "/resumen" },
+    { name: "Proveedores", path: "/providers" },
+    { name: "Ingredientes", path: "/ingredients" },
+    { name: "Productos", path: "/products" },
   ];
 
   return (
@@ -56,14 +58,12 @@ export default function App() {
         {menuItems.map((item, index) => (
           <NavbarMenuItem key={`${item}-${index}`}>
             <Link
-              color={
-                index === 2 ? "primary" : index === menuItems.length - 1 ? "danger" : "foreground"
-              }
+              color="foreground"
               className="w-full"
-              href={"/" + item}
+              href={item.path}
               size="lg"
             >
-              {item}
+              {item.name}
             </Link>
           </NavbarMenuItem>
         ))}

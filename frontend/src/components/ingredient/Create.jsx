@@ -27,7 +27,7 @@ function CreateIngredient() {
           <SelectItem
             key={unit.abbreviation}
           >
-            {unit.abbreviation}
+            {unit.name}
           </SelectItem>
         )}
       </Select>

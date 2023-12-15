@@ -20,7 +20,6 @@ function Start() {
   };
   return (
     <>
-      <NavBar />
 
       <main className="flex justify-center flex-col gap-3 h-[60vh] items-center">
         <div>

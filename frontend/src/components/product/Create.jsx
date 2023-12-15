@@ -1,6 +1,8 @@
 import React from "react";
 import useNewProduct from "../../hooks/useNewProduct";
-import { Button, Input } from "@nextui-org/react";
+import { Button, Input, Select, SelectItem } from "@nextui-org/react";
+import useIngredients from "../../hooks/useIngredients";
+import measuramentUnits from "../../lib/MeasuramentsUnits";
 
 function CreateProduct() {
   const {
@@ -20,6 +22,8 @@ function CreateProduct() {
     duration: 0,
   });
 
+  const { ingredients } = useIngredients();
+
   return (
     <form action="" className="flex flex-col gap-2" onSubmit={handleSubmit}>
       <Input
@@ -38,12 +42,15 @@ function CreateProduct() {
         onChange={handleChange}
       />
 
-      <Input
+      <Select
+        items={measuramentUnits}
         label="Unidad de medida"
-        type="text"
+        placeholder="Selecciona una unidad de medida"
+        onChange={handleChange}
         name="measuramentUnit"
-        placeholder="KG, L, etc"
-      />
+      >
+        {(unit) => <SelectItem key={unit.abbreviation}>{unit.name}</SelectItem>}
+      </Select>
 
       <h3>Ingredientes</h3>
 
@@ -55,15 +62,17 @@ function CreateProduct() {
         ))}
       </ul>
       <div className="flex flex-wrap gap-2 items-center">
-        <Input
-          label="Nombre"
-          type="text"
-          name="name"
-          placeholder="Nombre"
+        <Select
+          placeholder="Selecciona un ingrediente"
           onChange={(e) =>
             setNewMaterial({ ...newMaterial, name: e.target.value })
           }
-        />
+          items={ingredients}
+        >
+          {(ingredient) => (
+            <SelectItem value={ingredient.id}>{ingredient.name}</SelectItem>
+          )}
+        </Select>
 
         <Input
           label="Cantidad * litro"
@@ -75,17 +84,11 @@ function CreateProduct() {
           }
         />
 
-        <Input
-          label="Unidad de medida"
-          type="text"
-          name="quantity"
-          placeholder="Unidad de medida"
-          onChange={(e) =>
-            setNewMaterial({ ...newMaterial, measuramentUnit: e.target.value })
-          }
-        />
-
-        <Button color="primary" className="w-full" onClick={() => handleMaterials(newMaterial)}>
+        <Button
+          color="primary"
+          className="w-full"
+          onClick={() => handleMaterials(newMaterial)}
+        >
           Agregar ingrediente
         </Button>
       </div>
@@ -119,7 +122,11 @@ function CreateProduct() {
           }
         />
 
-        <Button color="primary" className="w-full"  onClick={() => handleProcessStages(newStage)}>
+        <Button
+          color="primary"
+          className="w-full"
+          onClick={() => handleProcessStages(newStage)}
+        >
           Agregar etapa
         </Button>
       </div>
