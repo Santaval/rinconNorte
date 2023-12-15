@@ -22,6 +22,16 @@ class IngredientController {
       res.status(400).json({ error: error.message });
     }
   }
+
+  static async delete(req, res) {
+    try {
+      const { id } = req.params;
+      await IngredientModel.delete({ id });
+      res.status(204).end();
+    } catch (error) {
+      res.status(400).json({ error: error.message });
+    }
+  }
 }
 
 module.exports = IngredientController;

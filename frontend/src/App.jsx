@@ -6,9 +6,9 @@ import NavBar from "./components/NavBar";
 
 import NewProvider from "./views/NewProvider";
 import Providers from "./views/Providers";
-import NewMilk from "./views/NewMilk";
-import Milk from "./views/Milk";
 import NewProduct from "./views/NewProduct";
+import Ingredients from "./views/Ingredients";
+import NewIngredient from "./views/NewIngredient";
 
 
 function App() {
@@ -21,8 +21,8 @@ function App() {
         <Route path="/resumen" element={<Resume />} />
         <Route path="/providers" element={<Providers />} />
         <Route path="/providers/new" element={<NewProvider />} />
-        <Route path="/milk/new" element={<NewMilk />} />
-        <Route path="/milk" element={<Milk />} />
+        <Route path="/ingredients/new" element={<NewIngredient />} />
+        <Route path="/ingredients" element={<Ingredients />} />
         <Route path="/product/new" element={<NewProduct />} />
       </Routes>
     </BrowserRouter>

@@ -3,9 +3,9 @@ const { codeGenerator } = require("saval-codegen");
 
 class IngredientModel {
   static async create({ name, measuramentUnit }) {
-    const id = codeGenerator();
+    const id = codeGenerator(10);
     const result = pool.query(
-      `INSERT INTO ingredients (id,name, measuramentUnit, createdAt) VALUES (?,?,?) RETURNING *`,
+      `INSERT INTO ingredients (id,name, measuramentUnit) VALUES (?,?,?)`,
       [id, name, measuramentUnit]
     );
 
@@ -16,7 +16,7 @@ class IngredientModel {
 
   static async all() {
     const result = await pool.query(`SELECT * FROM ingredients`);
-    return result.rows;
+    return result;
   }
 
   static async delete({ id }) {

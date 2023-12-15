@@ -2,17 +2,17 @@ import { useState } from "react";
 import { toast } from "sonner";
 import apiv1 from "../lib/apiv1";
 
-const useNewMilk = () => {
-  const [newMilk, setNewMilk] = useState({
-    liters: 0,
-    provider: "",
+const useNewIngredient = () => {
+  const [newIngredient, setNewIngredient] = useState({
+    name: 0,
+    measuramentUnit: "",
   });
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setNewMilk({
-      ...newMilk,
+    setNewIngredient({
+      ...newIngredient,
       [name]: value,
     });
   };
@@ -20,15 +20,15 @@ const useNewMilk = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    if (!newMilk.liters || !newMilk.provider) {
+    if (!newIngredient.name || !newIngredient.measuramentUnit) {
       toast.error("Todos los campos son obligatorios");
         setLoading(false);
       return;
     }
 
     try {
-      await apiv1.post("/milk", newMilk);
-      toast.success("Registro de leche creado");
+      await apiv1.post("/ingredients", newIngredient);
+      toast.success("Ingrediente agregado");
     } catch (err) {
       toast.error(err.response.data);
     }
@@ -36,7 +36,7 @@ const useNewMilk = () => {
     e.target.reset();
   };
 
-  return { newMilk, handleChange, handleSubmit, loading };
+  return { newIngredient, handleChange, handleSubmit, loading };
 };
 
-export default useNewMilk;
+export default useNewIngredient;
