@@ -50,4 +50,4 @@ class MilkProviderModel {
     }
 }
 
-module.exports = MilkProvider;
+module.exports = MilkProviderModel;
