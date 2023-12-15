@@ -4,7 +4,8 @@ import Panel from "./views/Panel";
 import Resume from "./views/Resume";
 import NavBar from "./components/NavBar";
 
-import CreateMilkProvider from "./components/provider/Create";
+import NewProvider from "./views/NewProvider";
+import Providers from "./views/Providers";
 
 
 function App() {
@@ -15,7 +16,8 @@ function App() {
         <Route path="/" element={<Start />} />
         <Route path="/panel" element={<Panel />} />
         <Route path="/resumen" element={<Resume />} />
-        <Route path="/provider/new" element={<CreateMilkProvider />} />
+        <Route path="/providers" element={<Providers />} />
+        <Route path="/providers/new" element={<NewProvider />} />
       </Routes>
     </BrowserRouter>
   );
