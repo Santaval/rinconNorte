@@ -28,14 +28,14 @@ class MilkModel {
     if (result.affectedRows === 0) throw new Error("Error al eliminar leche");
   }
 
-  static async getAll({page}) {
+  static async getAll() {
     const total = await pool.query("SELECT COUNT(*) FROM milk");
-    const result = await pool.query("SELECT * FROM milk LIMIT 10 OFFSET ?", [(page - 1) * 10]);
+    const result = await pool.query("SELECT milk.*, milkProviders.name FROM milk INNER JOIN milkProviders ON milk.provider = milkProviders.id ORDER BY createdAt DESC  LIMIT 100");
     return {
         total: total[0]["COUNT(*)"],
-        result,
-        page: page,
-        pages: Math.ceil(total[0]["COUNT(*)"] / 10),
+        milk: result,
+        page: 1,
+        pages: Math.ceil(total[0]["COUNT(*)"] / 100),
     };
   }
 }
