@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-import NavBar from "../components/NavBar";
+
 import axios from "axios";
 import API from "../lib/API";
 import { Button, Input } from "@nextui-org/react";
@@ -34,7 +34,7 @@ function Panel() {
 
   return (
     <>
-      <NavBar />
+     
       <main>
         <header className="px-8 gap-4 flex flex-col mt-4">
           <div className="flex gap-3">

@@ -1,4 +1,5 @@
 const { codeGenerator } = require("saval-codegen");
+const pool = require("../database");
 
 class MilkProviderModel {
   /**
@@ -8,7 +9,7 @@ class MilkProviderModel {
    */
   static async create({ name }) {
     const id = codeGenerator(10);
-    const result = await pool.query("INSERT INTO milkProvider SET ?", {
+    const result = await pool.query("INSERT INTO milkProviders SET ?", {
       id,
       name,
     });
@@ -21,7 +22,7 @@ class MilkProviderModel {
    */
 
   static async edit({ id, name }) {
-    const result = await pool.query("UPDATE milkProvider SET ? WHERE id = ?", [
+    const result = await pool.query("UPDATE milkProviders SET ? WHERE id = ?", [
       { name },
       id,
     ]);
@@ -33,7 +34,7 @@ class MilkProviderModel {
    * Delete milk provider
    */
   static async delete({ id }) {
-    const result = await pool.query("DELETE FROM milkProvider WHERE id = ?", [
+    const result = await pool.query("DELETE FROM milkProviders WHERE id = ?", [
       id,
     ]);
 
@@ -45,7 +46,7 @@ class MilkProviderModel {
      * Get all milk providers
      */
     static async getAll(){
-        const result = await pool.query('SELECT * FROM milkProvider')
+        const result = await pool.query('SELECT * FROM milkProviders')
         return result
     }
 }

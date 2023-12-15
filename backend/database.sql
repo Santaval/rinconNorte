@@ -1,3 +1,4 @@
+-- Active: 1702601103012@@bd5sawttppg3s5uy6ldf-mysql.services.clever-cloud.com@3306@bd5sawttppg3s5uy6ldf
 CREATE DATABASE rinconNorte;
 
 -- Path: backend/database.sql
@@ -17,7 +18,7 @@ CREATE TABLE cheeseProduction (
 
 
 
-CREATE TABLE milkProvider (
+CREATE TABLE milkProviders (
     id VARCHAR(10) NOT NULL PRIMARY KEY,
     name VARCHAR(50) NOT NULL
 )
@@ -48,6 +49,6 @@ CREATE TABLE process (
     createdAt DATETIME DEFAULT NOW(),
     milk INT NOT NULL DEFAULT 0,
     status INT NOT NULL DEFAULT 0,
-    currentStage INT NOT NULL DEFAULT 0,
+    currentStage INT NOT NULL DEFAULT 0
 )
 
