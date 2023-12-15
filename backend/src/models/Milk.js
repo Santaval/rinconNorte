@@ -38,4 +38,4 @@ class MilkModel {
 }
 
 
-module.exports = Milk;
+module.exports = MilkModel;
