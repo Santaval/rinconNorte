@@ -1,3 +1,5 @@
+const ProductModel = require("../models/Product");
+
 class ProductController {
   static async create(req, res) {
     try {
@@ -12,6 +14,7 @@ class ProductController {
       });
       res.status(201).json(product);
     } catch (error) {
+      console.log(error);
       res.status(500).json(error.message);
     }
   }
@@ -47,11 +50,12 @@ class ProductController {
     }
   }
 
-  static async getAll(req, res) {
+  static async all(req, res) {
     try {
-      const product = await ProductModel.getAll();
+      const product = await ProductModel.all();
       res.status(200).json(product);
     } catch (error) {
+      console.log(error);
       res.status(500).json(error.message);
     }
   }

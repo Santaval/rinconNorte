@@ -9,6 +9,7 @@ import Providers from "./views/Providers";
 import NewProduct from "./views/NewProduct";
 import Ingredients from "./views/Ingredients";
 import NewIngredient from "./views/NewIngredient";
+import Products from "./views/Products";
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
         <Route path="/ingredients/new" element={<NewIngredient />} />
         <Route path="/ingredients" element={<Ingredients />} />
         <Route path="/product/new" element={<NewProduct />} />
+        <Route path="/products" element={<Products />} />
       </Routes>
     </BrowserRouter>
   );

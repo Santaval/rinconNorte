@@ -39,12 +39,13 @@ const useNewProduct = () => {
     setLoading(true);
 
     try {
-      await apiv1.get("/products", newProduct);
+      await apiv1.post("/products", newProduct);
       toast.success("Producto creado");
       e.target.reset();
     } catch (error) {
       toast.error(error.response.data.message);
     }
+    setLoading(false);
   };
 
   return {

@@ -1,13 +1,16 @@
+const pool = require("../database");
+const {codeGenerator} = require("saval-codegen")
+
 class ProductModel {
 
     static async create({ name, price, materials, processStages, measuramentUnit }) {
         const id = codeGenerator(10);
-        const result = await pool.query("INSERT INTO product SET ?", {
+        const result = await pool.query("INSERT INTO products SET ?", {
             id,
             name,
             price,
-            materials,
-            processStages, 
+            materials: JSON.stringify(materials),
+            processStages: JSON.stringify(processStages), 
             measuramentUnit
         });
         if (result.affectedRows === 1) return { id, name, price, materials, processStages, measuramentUnit};
@@ -15,7 +18,7 @@ class ProductModel {
     }
 
     static async edit({ id, name, price, materials, processStages, measuramentUnit }) {
-        const result = await pool.query("UPDATE product SET ? WHERE id = ?", [
+        const result = await pool.query("UPDATE products SET ? WHERE id = ?", [
             { name, price, materials, processStages, measuramentUnit },
             id,
         ]);
@@ -24,19 +27,19 @@ class ProductModel {
     }
 
     static async delete({ id }) {
-        const result = await pool.query("DELETE FROM product WHERE id = ?", [id]);
+        const result = await pool.query("DELETE FROM products WHERE id = ?", [id]);
 
         if (result.affectedRows === 0) throw new Error("Error al eliminar producto");
     }
 
-    static async getAll({ page }) {
-        const total = await pool.query("SELECT COUNT(*) FROM product");
-        const result = await pool.query("SELECT * FROM product LIMIT 10 OFFSET ?", [(page - 1) * 10]);
+    static async all() {
+        const total = await pool.query("SELECT COUNT(*) FROM products");
+        const result = await pool.query("SELECT * FROM products LIMIT 100");
         return {
             total: total[0]["COUNT(*)"],
-            result,
-            page: page,
-            pages: Math.ceil(total[0]["COUNT(*)"] / 10),
+            products: result,
+            page: 1,
+            pages: Math.ceil(total[0]["COUNT(*)"] / 100),
         };
     }
 }
