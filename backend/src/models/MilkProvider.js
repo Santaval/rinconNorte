@@ -1,6 +1,6 @@
 const { codeGenerator } = require("saval-codegen");
 
-class MilkProvider {
+class MilkProviderModel {
   /**
    * Create new milk provider
    * @param {*} param0

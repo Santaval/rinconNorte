@@ -1,4 +1,4 @@
-class Milk {
+class MilkModel {
   static async create({ liters, provider }) {
     const id = codeGenerator(10);
     const result = await pool.query("INSERT INTO milk SET ?", {
