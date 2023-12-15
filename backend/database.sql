@@ -37,7 +37,8 @@ CREATE TABLE products (
     price INT NOT NULL,
     createdAt DATETIME DEFAULT NOW(),
     materials JSON,
-    processTimes JSON
+    processStages JSON,
+    measuramentUnit VARCHAR(10) NOT NULL
 )
 
 
@@ -46,6 +47,7 @@ CREATE TABLE process (
     productId VARCHAR(10) NOT NULL,
     createdAt DATETIME DEFAULT NOW(),
     milk INT NOT NULL DEFAULT 0,
-    status INT NOT NULL DEFAULT 0
+    status INT NOT NULL DEFAULT 0,
+    currentStage INT NOT NULL DEFAULT 0,
 )
 
