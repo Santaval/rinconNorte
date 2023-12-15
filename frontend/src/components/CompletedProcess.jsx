@@ -1,8 +1,6 @@
 import React from "react";
 import { Chip } from "@nextui-org/react";
 import ViewMilk from "./ViewMilk";
-const moment = require("moment");
-moment.locale("es");
 
 function Process({ receivedProcess }) {
   const liters = JSON.parse(receivedProcess.milk).reduce(
@@ -42,7 +40,7 @@ function Process({ receivedProcess }) {
       <div className="flex gap-3 items-center">
       <ViewMilk milkArray={receivedProcess.milk}/>
       <Chip color="success" className="text-white"> {receivedProcess.kg} kg </Chip>
-      <Chip color="danger" className="text-white"> {moment(new Date(receivedProcess.date)).format('LL')} </Chip>
+      <Chip color="danger" className="text-white"> {new Date(receivedProcess.date)} </Chip>
       </div>
     </div>
   );
