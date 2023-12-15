@@ -1,3 +1,6 @@
+const {codeGenerator} = require("saval-codegen");
+const pool = require("../database");
+
 class MilkModel {
   static async create({ liters, provider }) {
     const id = codeGenerator(10);
