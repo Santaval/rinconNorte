@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import NavBar from "../components/NavBar";
 import PasswordInput from "../components/PasswordInput";
 import { Button } from "@nextui-org/react";
 import axios from "axios";
