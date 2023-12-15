@@ -52,3 +52,10 @@ CREATE TABLE process (
     currentStage INT NOT NULL DEFAULT 0
 )
 
+
+CREATE TABLE ingredients (
+    id VARCHAR(10) NOT NULL PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    createdAt DATETIME DEFAULT NOW(),
+    measuramentUnit VARCHAR(10) NOT NULL
+)

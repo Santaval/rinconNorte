@@ -27,6 +27,7 @@ app.use("/api/milkproviders", require("./routes/milkProvider.js"));
 app.use("/api/milk", require("./routes/milk.js"));
 app.use("/api/process", require("./routes/process.js"));
 app.use("/api/products", require("./routes/product.js"));
+app.use("/api/ingredients", require("./routes/ingredients.js"));
 
 app.listen(process.env.PORT, () =>
   console.log(`Server running on port ${process.env.PORT}`)
