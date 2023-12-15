@@ -8,6 +8,7 @@ import NewProvider from "./views/NewProvider";
 import Providers from "./views/Providers";
 import NewMilk from "./views/NewMilk";
 import Milk from "./views/Milk";
+import NewProduct from "./views/NewProduct";
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
         <Route path="/providers/new" element={<NewProvider />} />
         <Route path="/milk/new" element={<NewMilk />} />
         <Route path="/milk" element={<Milk />} />
+        <Route path="/product/new" element={<NewProduct />} />
       </Routes>
     </BrowserRouter>
   );
