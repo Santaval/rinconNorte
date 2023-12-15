@@ -1,5 +1,5 @@
 class ProcessController {
-  async create(req, res) {
+  static async create(req, res) {
     try {
       const { product, milk } = req.body;
       const process = await ProcessModel.create({
@@ -12,7 +12,7 @@ class ProcessController {
     }
   }
 
-  async edit(req, res) {
+  static async edit(req, res) {
     try {
       const { id } = req.params;
       const { product, milk, status } = req.body;
@@ -28,7 +28,7 @@ class ProcessController {
     }
   }
 
-  async delete(req, res) {
+  static async delete(req, res) {
     try {
       const { id } = req.params;
       await ProcessModel.delete({
@@ -40,7 +40,7 @@ class ProcessController {
     }
   }
 
-  async getAll(req, res) {
+  static async getAll(req, res) {
     try {
       const process = await ProcessModel.getAll();
       res.status(200).json(process);
