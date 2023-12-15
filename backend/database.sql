@@ -45,6 +45,7 @@ CREATE TABLE process (
     id VARCHAR(10) NOT NULL PRIMARY KEY,
     productId VARCHAR(10) NOT NULL,
     createdAt DATETIME DEFAULT NOW(),
-    milk INT NOT NULL DEFAULT 0
+    milk INT NOT NULL DEFAULT 0,
+    status INT NOT NULL DEFAULT 0
 )
 
