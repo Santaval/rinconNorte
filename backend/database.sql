@@ -17,4 +17,34 @@ CREATE TABLE cheeseProduction (
 
 
 
+CREATE TABLE milkProvider (
+    id VARCHAR(10) NOT NULL PRIMARY KEY,
+    name VARCHAR(50) NOT NULL
+)
+
+CREATE TABLE milk (
+    id VARCHAR(10) NOT NULL PRIMARY KEY,
+    liters INT NOT NULL,
+    provider VARCHAR(10) NOT NULL,
+    createdAt DATETIME DEFAULT NOW()
+)
+
+
+
+CREATE TABLE products (
+    id VARCHAR(10) NOT NULL PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    price INT NOT NULL,
+    createdAt DATETIME DEFAULT NOW(),
+    materials JSON,
+    processTimes JSON
+)
+
+
+CREATE TABLE process (
+    id VARCHAR(10) NOT NULL PRIMARY KEY,
+    productId VARCHAR(10) NOT NULL,
+    createdAt DATETIME DEFAULT NOW(),
+    milk INT NOT NULL DEFAULT 0
+)
 
