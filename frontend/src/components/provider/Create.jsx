@@ -2,7 +2,7 @@ import { Button, Input } from "@nextui-org/react";
 import useNewMilkProvider from "../../hooks/useNewMilkProvider";
 
 export default function CreateMilkProvider() {
-  const { handelChange, handelSubmit } = useNewMilkProvider();
+  const { handelChange, handelSubmit, loading } = useNewMilkProvider();
 
   return (
     <form action="" className="p-8" onSubmit={handelSubmit}>
@@ -13,7 +13,7 @@ export default function CreateMilkProvider() {
         onInput={handelChange}
       />
 
-      <Button color="primary" variant="flat" type="submit" className="w-full mt-8">
+      <Button color="primary" variant="flat" type="submit" className="w-full mt-8" isLoading={loading}>
         Crear proveedor
       </Button>
     </form>
