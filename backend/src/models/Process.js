@@ -31,19 +31,17 @@ class ProcessModel {
       };
   }
 
-  static async edit({ id, productId, milk, status, stagesTimes }) {
+  static async edit({ id,  milk, status, stagesTimes, currentStage }) {
     const result = await pool.query("UPDATE process SET ? WHERE id = ?", [
-      { productId, milk, status, stagesTimes },
+      {  milk, status, stagesTimes, currentStage },
       id,
     ]);
 
-    if (result.affectedRows === 1)
-      return {
-        id,
-        productId,
-        milk,
-        status,
-      };
+    if (result.affectedRows === 1) {
+      const process = await this.byId({ id });
+      return process;
+    }
+      
   }
 
   static async delete({ id }) {
@@ -55,7 +53,7 @@ class ProcessModel {
   static async all() {
     const total = await pool.query("SELECT COUNT(*) FROM process");
     const result = await pool.query(
-      "SELECT process.*, products.* FROM process INNER JOIN products ON process.productId = products.id LIMIT 100"
+      "SELECT process.*, products.processStages,products.name,products.materials,products.measuramentUnit FROM process INNER JOIN products ON process.productId = products.id LIMIT 100"
     );
     return {
       total: total[0]["COUNT(*)"],
@@ -63,6 +61,17 @@ class ProcessModel {
       page: 1,
       pages: Math.ceil(total[0]["COUNT(*)"] / 100),
     };
+  }
+
+  static async byId({ id }) {
+    const result = await pool.query(
+      "SELECT process.*, products.* FROM process INNER JOIN products ON process.productId = products.id WHERE process.id = ?",
+      [id]
+    );
+
+    if (result.length === 0) throw new Error("Proceso no encontrado");
+
+    return result[0];
   }
 }
 

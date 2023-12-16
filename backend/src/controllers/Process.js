@@ -18,16 +18,17 @@ class ProcessController {
   static async edit(req, res) {
     try {
       const { id } = req.params;
-      const { product, milk, status, stagesTimes } = req.body;
+      const {  milk, status, stagesTimes, currentStage } = req.body;
       const process = await ProcessModel.edit({
         id,
-        productId: product,
         milk,
         status,
         stagesTimes: JSON.stringify(stagesTimes),
+        currentStage,
       });
       res.status(200).json(process);
     } catch (error) {
+      console.log(error);
       res.status(500).json(error.message);
     }
   }
@@ -47,6 +48,17 @@ class ProcessController {
   static async all(req, res) {
     try {
       const process = await ProcessModel.all();
+      res.status(200).json(process);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json(error.message);
+    }
+  }
+
+  static async byId(req, res) {
+    try {
+      const { id } = req.params;
+      const process = await ProcessModel.byId({ id });
       res.status(200).json(process);
     } catch (error) {
       console.log(error);

@@ -2,8 +2,12 @@ import React, { useEffect } from "react";
 import formatTime from "../../lib/formatTime";
 import Ingredient from "../ingredient/Ingredient";
 import useTimer from "../../hooks/useTimer";
+import { Button } from "@nextui-org/react";
+import useEditProcess from "../../hooks/useEditProcess";
 
 function ProcessCard({ process }) {
+  const {nextStage} = useEditProcess(process);
+
   const processStages = JSON.parse(process.processStages);
   const stagesTimes = JSON.parse(process.stagesTimes);
   const currentStage = processStages[process.currentStage];
@@ -48,16 +52,24 @@ function ProcessCard({ process }) {
         ))}
       </ul>
 
-      <div className="flex flex-col mt-4 w-full">
+     <footer className="flex items-center">
+     <div className="flex flex-col mt-4 w-full">
         <span>Temporizador</span>
         <span
-          className={`text-md ${
-            seconds < 0 ? "text-danger" : "text-success"
-          }`}
+          className={`text-md ${seconds < 0 ? "text-danger" : "text-success"}`}
         >
           {hours} : {minutes} : {seconds}
         </span>
       </div>
+
+      {process.currentStage === processStages.length - 1 ? (
+        <Button color="success" variant="flat" >
+          Finalizar Proceso
+        </Button>
+      ) : (
+        <Button onPress={nextStage} color="success" variant="flat">Siguiente Etapa</Button>
+      )}
+     </footer>
     </article>
   );
 }

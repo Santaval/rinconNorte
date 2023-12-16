@@ -11,16 +11,16 @@ const useTimer = (startDate, minutes) => {
 
   useEffect(() => {
     executeInterval();
-    const interval =  setInterval(() => {
+    setInterval(() => {
       executeInterval();
     }, 1000);
   }, [startDate]);
 
-
   const executeInterval = () => {
     const dataTime = timerFn(startDate, minutes);
-    setTimer(dataTime);
-  }
+    console.log(dataTime);
+    if (dataTime) setTimer(dataTime);
+  };
 
   return timer;
 };

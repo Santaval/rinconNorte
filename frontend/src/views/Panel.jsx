@@ -1,6 +1,5 @@
 import React from "react";
 
-import { Navigate } from "react-router-dom";
 import CreateProcess from "../components/process/Create";
 import useProcess from "../hooks/useProcess";
 import ProcessCard from "../components/process/Card";
@@ -9,7 +8,7 @@ function Panel() {
 
   const {process} = useProcess();
 
-  if (!localStorage.getItem('access')) return <Navigate to="/" />;
+
 
   return (
     <>
