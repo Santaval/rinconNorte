@@ -1,3 +1,6 @@
+const {codeGenerator} = require("saval-codegen");
+const pool = require("../database")
+
 class ProcessModel {
   static STATUS = {
     NOT_STARTED: 0,
@@ -58,3 +61,5 @@ class ProcessModel {
         };
     }
 }
+
+module.exports = ProcessModel;

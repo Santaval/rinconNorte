@@ -1,3 +1,5 @@
+const ProcessModel = require("../models/Process");
+
 class ProcessController {
   static async create(req, res) {
     try {
@@ -8,6 +10,7 @@ class ProcessController {
       });
       res.status(201).json(process);
     } catch (error) {
+      console.log(error);
       res.status(500).json(error.message);
     }
   }
