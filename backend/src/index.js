@@ -11,7 +11,7 @@ require("dotenv").config();
 app.use(express.json());
 app.use(
   cors({
-    origin: ["http://localhost:3000", "https://rinconnorte.savaldev.com", "http://192.168.1.6:3000"],
+    origin: ["http://localhost:3000", "https://rinconnorte.savaldev.com", "http://192.168.1.9:3000"],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })

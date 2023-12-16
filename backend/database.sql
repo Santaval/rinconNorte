@@ -41,7 +41,9 @@ CREATE TABLE process (
     milk DOUBLE NOT NULL DEFAULT 0,
     status INT NOT NULL DEFAULT 0,
     currentStage INT NOT NULL DEFAULT 0,
-    stagesTimes JSON
+    stagesTimes JSON,
+    result DOUBLE NOT NULL DEFAULT 0,
+    finishedAt DATETIME
 )
 
 

@@ -27,6 +27,7 @@ const useNewProcess = () => {
       await apiv1.post("/process", newProcess);
       toast.success("Proceso creado correctamente");
       e.target.reset();
+      window.location.reload();
     } catch (err) {
       toast.error("Error al crear el proceso");
     }

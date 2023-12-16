@@ -1,12 +1,13 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import formatTime from "../../lib/formatTime";
 import Ingredient from "../ingredient/Ingredient";
 import useTimer from "../../hooks/useTimer";
-import { Button } from "@nextui-org/react";
+import { Button, Input } from "@nextui-org/react";
 import useEditProcess from "../../hooks/useEditProcess";
 
 function ProcessCard({ process }) {
-  const {nextStage} = useEditProcess(process);
+  const [result, setResult] = useState(null);
+  const { nextStage, finishProcess } = useEditProcess(process);
 
   const processStages = JSON.parse(process.processStages);
   const stagesTimes = JSON.parse(process.stagesTimes);
@@ -27,7 +28,7 @@ function ProcessCard({ process }) {
         <div className="flex flex-col">
           <span>Etapa Actual</span>
           <span className="text-xs text-gray-400">
-            {JSON.parse(process.processStages)[process.currentStage].name}
+            {process.status !==2 ? JSON.parse(process.processStages)[process.currentStage].name : "Finalizado"}
           </span>
         </div>
 
@@ -52,24 +53,57 @@ function ProcessCard({ process }) {
         ))}
       </ul>
 
-     <footer className="flex items-center">
-     <div className="flex flex-col mt-4 w-full">
-        <span>Temporizador</span>
-        <span
-          className={`text-md ${seconds < 0 ? "text-danger" : "text-success"}`}
-        >
-          {hours} : {minutes} : {seconds}
-        </span>
-      </div>
+      <footer className="flex items-center">
+       {process.status !== 2 && <div className="flex flex-col mt-4 w-full">
+          <span>Temporizador</span>
+          <span
+            className={`text-md ${
+              seconds < 0 ? "text-danger" : "text-success"
+            }`}
+          >
+            {hours} : {minutes} : {seconds}
+          </span>
+        </div>}
 
-      {process.currentStage === processStages.length - 1 ? (
-        <Button color="success" variant="flat" >
-          Finalizar Proceso
-        </Button>
-      ) : (
-        <Button onPress={nextStage} color="success" variant="flat">Siguiente Etapa</Button>
-      )}
-     </footer>
+        {process.status !== 2 ? (
+          <div>
+            {process.currentStage === processStages.length - 1 ? (
+              <form className="flex flex-col gap-2 mt-4">
+                <Input
+                  onInput={(e) => setResult(e.target.value)}
+                  name="quantity"
+                  placeholder="Cantidad"
+                  endContent={process.measuramentUnit}
+                />
+                <Button
+                  onPress={() => finishProcess(result)}
+                  color="success"
+                  variant="flat"
+                >
+                  Finalizar Proceso
+                </Button>
+              </form>
+            ) : (
+              <Button onPress={nextStage} color="success" variant="flat">
+                Iniciar {processStages[process.currentStage + 1].name}
+              </Button>
+            )}
+          </div>
+        ) : (
+          <div className="w-1/2 mt-4">
+            <span className="text-md text-danger">Proceso Finalizado</span>
+            <span>
+              <br />
+              {formatTime(process.finishedAt)}
+            </span>
+            <span>
+              {" "}
+              <br />
+              {process.result} {process.measuramentUnit}
+            </span>
+          </div>
+        )}
+      </footer>
     </article>
   );
 }

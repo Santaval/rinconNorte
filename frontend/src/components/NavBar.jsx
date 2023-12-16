@@ -10,7 +10,7 @@ export default function App() {
   }
 
   const menuItems = [
-    { name: "Panel", path: "/" },
+    { name: "Panel", path: "/panel" },
     { name: "Resumen", path: "/resumen" },
     { name: "Proveedores", path: "/providers" },
     { name: "Ingredientes", path: "/ingredients" },
