@@ -16,7 +16,7 @@ const useIngredient = (id) => {
     };
 
     fetchIngredient();
-  }, []);
+  }, [id]);
 
   return { ingredient };
 };
