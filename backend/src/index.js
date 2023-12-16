@@ -23,7 +23,7 @@ app.use(morgan("dev"));
 app.use("/api", require("./routes/cheese.js"));
 app.use("/api", require("./routes/access.js"));
 
-app.use("/api/milkproviders", require("./routes/milkProvider.js"));
+app.use("/api/providers", require("./routes/milkProvider.js"));
 app.use("/api/milk", require("./routes/milk.js"));
 app.use("/api/process", require("./routes/process.js"));
 app.use("/api/products", require("./routes/product.js"));

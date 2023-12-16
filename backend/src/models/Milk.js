@@ -30,7 +30,7 @@ class MilkModel {
 
   static async getAll() {
     const total = await pool.query("SELECT COUNT(*) FROM milk");
-    const result = await pool.query("SELECT milk.*, milkProviders.name FROM milk INNER JOIN milkProviders ON milk.provider = milkProviders.id ORDER BY createdAt DESC  LIMIT 100");
+    const result = await pool.query("SELECT milk.*, providers.name FROM milk INNER JOIN providers ON milk.provider = providers.id ORDER BY createdAt DESC  LIMIT 100");
     return {
         total: total[0]["COUNT(*)"],
         milk: result,

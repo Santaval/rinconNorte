@@ -23,6 +23,16 @@ class IngredientController {
     }
   }
 
+  static async byId(req, res) {
+    try {
+      const { id } = req.params;
+      const ingredient = await IngredientModel.byId({ id });
+      res.json(ingredient);
+    } catch (error) {
+      res.status(400).json({ error: error.message });
+    }
+  }
+
   static async delete(req, res) {
     try {
       const { id } = req.params;

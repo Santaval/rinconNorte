@@ -4,6 +4,6 @@ const ProcessController = require("../controllers/Process");
 router.post("/", ProcessController.create);
 router.put("/:id", ProcessController.edit);
 router.delete("/:id", ProcessController.delete);
-router.get("/", ProcessController.getAll);
+router.get("/", ProcessController.all);
 
 module.exports = router;

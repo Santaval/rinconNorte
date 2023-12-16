@@ -8,7 +8,7 @@ const useProviders = () => {
   useEffect(() => {
     const fetchProviders = async () => {
       try {
-        const { data } = await apiv1.get("/milkproviders");
+        const { data } = await apiv1.get("/providers");
         setProviders(data);
       } catch (err) {
         toast.error(err.response.data);
@@ -19,7 +19,7 @@ const useProviders = () => {
 
   const deleteProvider = async (id) => {
     try {
-      await apiv1.delete(`/milkproviders/${id}`);
+      await apiv1.delete(`/providers/${id}`);
       setProviders(providers.filter((provider) => provider.id !== id));
       toast.success("Proveedor de leche eliminado");
     } catch (err) {

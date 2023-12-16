@@ -25,6 +25,15 @@ class IngredientModel {
     ]);
     if (result.affectedRows === 0) throw new Error("Ingredient not deleted");
   }
+
+  static async byId({ id }) {
+    const result = await pool.query(`SELECT * FROM ingredients WHERE id = ?`, [
+      id,
+    ]);
+
+    if (result.length === 0) throw new Error("Ingredient not found");
+    return result[0];
+  }
 }
 
 module.exports = IngredientModel;

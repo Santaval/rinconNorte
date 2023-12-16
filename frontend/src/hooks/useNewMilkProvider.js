@@ -18,7 +18,7 @@ const useNewMilkProvider = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      await apiv1.post("/milkProviders", newMilkProvider);
+      await apiv1.post("/providers", newMilkProvider);
       toast.success("Proveedor de leche creado");
     } catch (err) {
       toast.error(err.response.data);

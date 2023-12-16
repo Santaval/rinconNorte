@@ -1,13 +1,13 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React from "react";
 
-import axios from "axios";
-import API from "../lib/API";
-import { Button, Input } from "@nextui-org/react";
-import Process from "../components/Process";
 import { Navigate } from "react-router-dom";
 import CreateProcess from "../components/process/Create";
+import useProcess from "../hooks/useProcess";
+import ProcessCard from "../components/process/Card";
 
 function Panel() {
+
+  const {process} = useProcess();
 
   if (!localStorage.getItem('access')) return <Navigate to="/" />;
 
@@ -18,6 +18,16 @@ function Panel() {
         <header>
           <CreateProcess />
         </header>
+
+       <section className="mt-4">
+        <h3 className="font-bold">Procesos</h3>
+
+        <div>
+          {process.map((item) => (
+            <ProcessCard key={item.id} process={item} />
+          ))}
+        </div>
+       </section>
       </main>
     </>
   );

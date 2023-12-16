@@ -43,11 +43,12 @@ class ProcessController {
     }
   }
 
-  static async getAll(req, res) {
+  static async all(req, res) {
     try {
-      const process = await ProcessModel.getAll();
+      const process = await ProcessModel.all();
       res.status(200).json(process);
     } catch (error) {
+      console.log(error);
       res.status(500).json(error.message);
     }
   }

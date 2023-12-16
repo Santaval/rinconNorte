@@ -12,7 +12,7 @@ const measuramentUnits = [
   {
     id: 3,
     name: "Litro",
-    abbreviation: "l",
+    abbreviation: "L",
   },
   {
     id: 4,
