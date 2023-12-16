@@ -22,7 +22,7 @@ function Panel() {
        <section className="mt-4">
         <h3 className="font-bold">Procesos</h3>
 
-        <div>
+        <div className="flex flex-col gap-4">
           {process.map((item) => (
             <ProcessCard key={item.id} process={item} />
           ))}
