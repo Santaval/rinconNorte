@@ -12,12 +12,14 @@ class ProcessModel {
   static async create({ productId, milk }) {
     const id = codeGenerator(10);
     const status = this.STATUS.NOT_STARTED;
+    const stagesTimes = JSON.stringify([new Date()]);
 
     const result = await pool.query("INSERT INTO process SET ?", {
       id,
       productId,
       milk,
       status,
+      stagesTimes,
     });
 
     if (result.affectedRows === 1)
@@ -29,9 +31,9 @@ class ProcessModel {
       };
   }
 
-  static async edit({ id, productId, milk, status }) {
+  static async edit({ id, productId, milk, status, stagesTimes }) {
     const result = await pool.query("UPDATE process SET ? WHERE id = ?", [
-      { productId, milk, status },
+      { productId, milk, status, stagesTimes },
       id,
     ]);
 

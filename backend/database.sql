@@ -34,14 +34,14 @@ CREATE TABLE products (
     measuramentUnit VARCHAR(10) NOT NULL
 )
 
-
 CREATE TABLE process (
     id VARCHAR(10) NOT NULL PRIMARY KEY,
     productId VARCHAR(10) NOT NULL,
     createdAt DATETIME DEFAULT NOW(),
     milk DOUBLE NOT NULL DEFAULT 0,
     status INT NOT NULL DEFAULT 0,
-    currentStage INT NOT NULL DEFAULT 0
+    currentStage INT NOT NULL DEFAULT 0,
+    stagesTimes JSON
 )
 
 

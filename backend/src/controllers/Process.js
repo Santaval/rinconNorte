@@ -18,12 +18,13 @@ class ProcessController {
   static async edit(req, res) {
     try {
       const { id } = req.params;
-      const { product, milk, status } = req.body;
+      const { product, milk, status, stagesTimes } = req.body;
       const process = await ProcessModel.edit({
         id,
         productId: product,
         milk,
         status,
+        stagesTimes: JSON.stringify(stagesTimes),
       });
       res.status(200).json(process);
     } catch (error) {
