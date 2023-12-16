@@ -1,5 +1,4 @@
 const timer = (dateStart, plusMinutes) => {
-  console.log(dateStart);
   const targetDate = new Date(dateStart).getTime() + plusMinutes * 60 * 1000;
 
   const currentDate = new Date().getTime();
