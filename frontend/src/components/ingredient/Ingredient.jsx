@@ -5,11 +5,11 @@ function Ingredient({ingredientId: id, milk, quantity}) {
     const {ingredient} = useIngredient(id)
     if (!ingredient) return null
   return (
-    <div className='flex items-center gap-3'>
-      <span className='text-xl font-semibold'>
+    <div className='flex items-center gap-3 justify-between'>
+      <span className='text-md font-semibold'>
         {ingredient.name}
       </span>
-        <span className='text-lg text-primary '>
+        <span className='text-md text-primary '>
            {(milk * quantity).toFixed(3)} <span className='text-foreground'>{ingredient.measuramentUnit}</span>
         </span>
     </div>

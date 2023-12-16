@@ -21,7 +21,7 @@ const useProviders = () => {
     try {
       await apiv1.delete(`/providers/${id}`);
       setProviders(providers.filter((provider) => provider.id !== id));
-      toast.success("Proveedor de leche eliminado");
+      toast.success("proveedor eliminado");
     } catch (err) {
       toast.error(err.response.data);
     }

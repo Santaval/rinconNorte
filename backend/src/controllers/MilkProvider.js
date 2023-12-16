@@ -33,7 +33,7 @@ class MilkProvideController {
       await MilkProviderModel.delete({
         id,
       });
-      res.status(200).json({ message: "Proveedor de leche eliminado" });
+      res.status(200).json({ message: "proveedor eliminado" });
     } catch (error) {
       res.status(500).json(error.message);
     }

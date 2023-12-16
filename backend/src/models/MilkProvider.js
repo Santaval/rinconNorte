@@ -14,7 +14,7 @@ class MilkProviderModel {
       name,
     });
     if (result.affectedRows === 1) return { id, name };
-    throw new Error("Error al crear proveedor de leche");
+    throw new Error("Error al crear proveedor");
   }
 
   /**
@@ -27,7 +27,7 @@ class MilkProviderModel {
       id,
     ]);
     if (result.affectedRows === 1) return { id, name };
-    throw new Error("Error al editar proveedor de leche");
+    throw new Error("Error al editar proveedor");
   }
 
   /**
@@ -39,7 +39,7 @@ class MilkProviderModel {
     ]);
 
     if (result.affectedRows === 0)
-      throw new Error("Error al eliminar proveedor de leche");
+      throw new Error("Error al eliminar proveedor");
   }
 
     /**
