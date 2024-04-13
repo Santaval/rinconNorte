@@ -11,7 +11,7 @@ const useIngredient = (id) => {
         const { data } = await apiv1.get(`/ingredients/${id}`);
         setIngredient(data);
       } catch (error) {
-        toast.error("Error al cargar el ingrediente");
+        // toast.error("Error al cargar el ingrediente");
       }
     };
 

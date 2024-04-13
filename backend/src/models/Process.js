@@ -67,13 +67,13 @@ class ProcessModel {
   static async all() {
     const total = await pool.query("SELECT COUNT(*) FROM process");
     const result = await pool.query(
-      "SELECT process.*, products.processStages,products.name,products.materials,products.measuramentUnit FROM process INNER JOIN products ON process.productId = products.id ORDER BY createdAt DESC LIMIT 100"
+      "SELECT process.*, products.processStages,products.name,products.materials,products.measuramentUnit FROM process INNER JOIN products ON process.productId = products.id WHERE process.status != 3 ORDER BY createdAt DESC LIMIT 10"
     );
     return {
       total: total[0]["COUNT(*)"],
       process: result,
       page: 1,
-      pages: Math.ceil(total[0]["COUNT(*)"] / 100),
+      pages: Math.ceil(total[0]["COUNT(*)"] / 10),
     };
   }
 
