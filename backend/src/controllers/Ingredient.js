@@ -29,6 +29,7 @@ class IngredientController {
       const ingredient = await IngredientModel.byId({ id });
       res.json(ingredient);
     } catch (error) {
+      console.log(error);
       res.status(400).json({ error: error.message });
     }
   }

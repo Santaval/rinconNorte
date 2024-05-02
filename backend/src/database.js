@@ -1,53 +1,36 @@
 /**
- * Este archivo configura la conecciòn a la base de datos 
+ * Este archivo configura la conexión a la base de datos PostgreSQL
  */
 
-// variables de entorno
-require('dotenv').config()
+// Variables de entorno
+require('dotenv').config();
 
+// Imports
+const { Pool } = require('pg');
 
-// imports
-
-// modulo mysql
-const mysql = require('mysql') 
-
-// credenciales de la base de daots
-const database = {
-    database: process.env.DB,
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASS,
+// Credenciales de la base de datos
+const databaseConfig = {
+    connectionString: process.env.DATABASE_URL,
     ssl: {
-        rejectUnauthorized: false
+        rejectUnauthorized: false,
+    },
+};
+
+// Creando nueva pool para conectarse
+const pool = new Pool(databaseConfig);
+
+// Verificar la conexión
+pool.connect((err, client, release) => {
+    if (err) {
+        console.error('Error al conectar con la base de datos:', err.stack);
+        return;
     }
-}
+    console.log('Conexión establecida con la base de datos');
+    release();
+});
 
-// primesas de node
-const {promisify} = require('util')
+// Consultas como promesas
+pool.query = pool.query;
 
-
-// creando nueva pool para conectarse
-const pool = mysql.createPool(database)
-
-// obteniendo conecciòn
-pool.getConnection((err, connection) =>{
-    // si se encuentra algùn error se lanza dependiendo del tipo de error
-    if(err){
-        if(err.code === 'PROTOCOL_CONNECTION_LOST'){console.error('Connection closed')}
-        if(err.code === 'ERR_CON_COUNT_ERROR'){console.error('Many connections ')}
-        if(err.code === 'ENCONNREFUSE'){console.error('REFUSE CONECTION')}
-    } 
-
-    // si se realizò la conecciòn se lanza la conecciòn y se imprime en consola que la base de datos se ha conectado
-    if(connection) connection.release()
-        console.log('DB enable')
-        return
-    
-})
-
-// consultas como promesas
-pool.query = promisify(pool.query)
-
-
-// se exporta el mòdulo
-module.exports = pool
+// Se exporta el módulo
+module.exports = pool;

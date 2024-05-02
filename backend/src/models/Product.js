@@ -33,13 +33,13 @@ class ProductModel {
     }
 
     static async all() {
-        const total = await pool.query("SELECT COUNT(*) FROM products");
-        const result = await pool.query("SELECT * FROM products LIMIT 100");
+        const {rows: total} = await pool.query("SELECT COUNT(*) as total FROM products");
+        const {rows:  result} = await pool.query("SELECT * FROM products LIMIT 100");
         return {
-            total: total[0]["COUNT(*)"],
+            total: +total[0].total,
             products: result,
             page: 1,
-            pages: Math.ceil(total[0]["COUNT(*)"] / 100),
+            pages: Math.ceil(total[0].total / 100),
         };
     }
 }

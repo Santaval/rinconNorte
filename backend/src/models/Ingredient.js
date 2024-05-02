@@ -27,9 +27,7 @@ class IngredientModel {
   }
 
   static async byId({ id }) {
-    const result = await pool.query(`SELECT * FROM ingredients WHERE id = ?`, [
-      id,
-    ]);
+    const {rows: result} = await pool.query(`SELECT * FROM ingredients WHERE id = '${id}';`);
 
     if (result.length === 0) throw new Error("Ingredient not found");
     return result[0];

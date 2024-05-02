@@ -8,14 +8,13 @@ import useEditProcess from "../../hooks/useEditProcess";
 function ProcessCard({ process }) {
   const [result, setResult] = useState(null);
   const { nextStage, finishProcess } = useEditProcess(process);
-
-  const processStages = JSON.parse(process.processStages);
-  const stagesTimes = JSON.parse(process.stagesTimes);
-  const currentStage = processStages[process.currentStage];
+  const processstages = process.processstages;
+  const stagesTimes = process.stagestimes;
+  const currentstage = processstages[process.currentstage];
 
   const { hours, minutes, seconds } = useTimer(
-    stagesTimes[process.currentStage],
-    currentStage.duration
+    stagesTimes[process.currentstage],
+    currentstage.duration
   );
 
   return (
@@ -28,7 +27,7 @@ function ProcessCard({ process }) {
         <div className="flex flex-col">
           <span>Etapa Actual</span>
           <span className="text-xs text-gray-400">
-            {process.status !==2 ? JSON.parse(process.processStages)[process.currentStage].name : "Finalizado"}
+            {process.status !==2 ? process.processstages[process.currentstage].name : "Finalizado"}
           </span>
         </div>
 
@@ -42,7 +41,7 @@ function ProcessCard({ process }) {
 
       <h5 className="mt-4">Ingredientes</h5>
       <ul className="mt-4">
-        {JSON.parse(process.materials).map((item) => (
+        {process.materials.map((item) => (
           <li key={item.id}>
             <Ingredient
               ingredientId={item.name}
@@ -67,7 +66,7 @@ function ProcessCard({ process }) {
 
         {process.status !== 2 ? (
           <div>
-            {process.currentStage === processStages.length - 1 ? (
+            {process.currentStage === processstages.length - 1 ? (
               <form className="flex flex-col gap-2 mt-4">
                 <Input
                   onInput={(e) => setResult(e.target.value)}
@@ -85,7 +84,7 @@ function ProcessCard({ process }) {
               </form>
             ) : (
               <Button onPress={nextStage} color="success" variant="flat">
-                Iniciar {processStages[process.currentStage + 1].name}
+                Iniciar {processstages[process.currentstage + 1].name}
               </Button>
             )}
           </div>

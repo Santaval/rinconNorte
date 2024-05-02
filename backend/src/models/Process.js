@@ -1,5 +1,5 @@
-const { codeGenerator } = require("saval-codegen");
-const pool = require("../database");
+const { codeGenerator } = require('saval-codegen');
+const pool = require('../database');
 
 class ProcessModel {
   static STATUS = {
@@ -14,15 +14,12 @@ class ProcessModel {
     const status = this.STATUS.NOT_STARTED;
     const stagesTimes = JSON.stringify([new Date()]);
 
-    const result = await pool.query("INSERT INTO process SET ?", {
-      id,
-      productId,
-      milk,
-      status,
-      stagesTimes,
-    });
+    const result = await pool.query(
+      'INSERT INTO process (id, productid, milk, status, stagestimes) VALUES ($1, $2, $3, $4, $5)',
+      [id, productId, milk, status, stagesTimes]
+    );
 
-    if (result.affectedRows === 1)
+    if (result.rowCount === 1)
       return {
         id,
         productId,
@@ -40,7 +37,7 @@ class ProcessModel {
     finishedAt,
     result,
   }) {
-    const queryResult = await pool.query("UPDATE process SET ? WHERE id = ?", [
+    const queryResult = await pool.query('UPDATE process SET ? WHERE id = ?', [
       {
         milk,
         status,
@@ -59,31 +56,31 @@ class ProcessModel {
   }
 
   static async delete({ id }) {
-    const result = await pool.query("DELETE FROM process WHERE id = ?", [id]);
+    const result = await pool.query('DELETE FROM process WHERE id = ?', [id]);
 
-    if (result.affectedRows === 0) throw new Error("Error al eliminar proceso");
+    if (result.affectedRows === 0) throw new Error('Error al eliminar proceso');
   }
 
   static async all() {
-    const total = await pool.query("SELECT COUNT(*) FROM process");
-    const result = await pool.query(
-      "SELECT process.*, products.processStages,products.name,products.materials,products.measuramentUnit FROM process INNER JOIN products ON process.productId = products.id ORDER BY createdAt DESC LIMIT 100"
+    const { rows: total } = await pool.query('SELECT COUNT(*) as total FROM process');
+    const { rows: process } = await pool.query(
+      'SELECT process.*, products.processStages,products.name,products.materials,products.measuramentUnit FROM process INNER JOIN products ON process.productId = products.id ORDER BY createdAt DESC LIMIT 100'
     );
     return {
-      total: total[0]["COUNT(*)"],
-      process: result,
+      total: +total[0].total,
+      process,
       page: 1,
-      pages: Math.ceil(total[0]["COUNT(*)"] / 100),
+      pages: Math.ceil(total[0].total / 100),
     };
   }
 
   static async byId({ id }) {
-    const result = await pool.query(
-      "SELECT process.*, products.* FROM process INNER JOIN products ON process.productId = products.id WHERE process.id = ?",
+    const { rows: result } = await pool.query(
+      'SELECT process.*, products.* FROM process INNER JOIN products ON process.productId = products.id WHERE process.id = ?',
       [id]
     );
 
-    if (result.length === 0) throw new Error("Proceso no encontrado");
+    if (result.length === 0) throw new Error('Proceso no encontrado');
 
     return result[0];
   }
