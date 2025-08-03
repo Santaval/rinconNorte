@@ -10,10 +10,7 @@ const { Pool } = require('pg');
 
 // Credenciales de la base de datos
 const databaseConfig = {
-    connectionString: process.env.DATABASE_URL,
-    ssl: {
-        rejectUnauthorized: false,
-    },
+    connectionString: process.env.DATABASE_URL
 };
 
 // Creando nueva pool para conectarse
